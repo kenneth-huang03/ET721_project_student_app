@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+<main class="page-wrapper">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">Class Blog</p>
+            <h1>Latest updates</h1>
+            <p>Announcements, reminders, and study tips for your courses.</p>
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+    </header>
+
+    <section class="blog-layout">
+        <article class="featured-post">
+            <p class="post-meta">Featured · Today</p>
+            <h2>Welcome to the class blog</h2>
+            <p>
+                Use this space for course announcements, project notes, and helpful
+                links that students should be able to find quickly.
+            </p>
+            <a href="#" class="text-link">Read more</a>
+        </article>
+
+        <aside class="blog-sidebar">
+            <h2>Categories</h2>
+            <ul>
+                <li>Announcements</li>
+                <li>Assignments</li>
+                <li>Study Resources</li>
+            </ul>
+        </aside>
+    </section>
+
+    <section class="post-grid">
+        <article class="post-card">
+            <p class="post-meta">May 14</p>
+            <h3>Temp Post</h3>
+            <p>Temp Post.</p>
+        </article>
+   </section>
+</main>
+{% endblock %}

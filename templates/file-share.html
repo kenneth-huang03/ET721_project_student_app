@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}File Share{% endblock %}
+
+{% block body %}
+<main class="page-wrapper">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">Resources</p>
+            <h1>File Share</h1>
+            <p>Share class files, notes, and resources in one place.</p>
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+    </header>
+
+    <section class="file-share-layout">
+        <div class="upload-card">
+            <h2>Upload a file</h2>
+            <p>Select a file and add a short description for classmates.</p>
+
+            <form action="#" method="POST" enctype="multipart/form-data" class="upload-form">
+                <label for="file">Choose file</label>
+                <input type="file" id="file" name="file">
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" placeholder="What is this file for?"></textarea>
+
+                <button type="submit">Share File</button>
+            </form>
+        </div>
+
+        <div class="shared-files-card">
+            <h2>Shared files</h2>
+            <ul class="file-list">
+               <li>
+                    <span class="file-icon">File</span>
+                    <div>
+                        <h3>Temp File</h3>
+                        <p>Sample</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</main>
+{% endblock %}

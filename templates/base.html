@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+<head>
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>{% block title %}{% endblock %}</title>
+    
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css') }}">
+</head>
+<body class = "{{ request.endpoint }}">
+    {% block body %}{% endblock %}
+
+
+    <footer>
+        <!-- HEY DUMBASS ADD THE STUFF HERE -->
+    </footer>
+
+    <script src = "{{ url_for('static', filename = 'script.js') }}"></script>
+</body>
+</html>

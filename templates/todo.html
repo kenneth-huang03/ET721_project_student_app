@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}To Do{% endblock %}
+
+{% block body %}
+<main class="page-wrapper">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">Task Manager</p>
+            <h1>To Do List</h1>
+            <p>Keep track of upcoming course tasks and reminders.</p>
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+    </header>
+
+    <section class="todo-panel">
+        <div class="todo-header">
+            <h2>Add a task</h2>
+            <p>New tasks are saved in your current session for now.</p>
+        </div>
+
+        <form action="{{ url_for('todo') }}" method="POST" class="todo-form">
+            <label for="todo">New task</label>
+            <div class="todo-input-row">
+                <input type="text" id="todo" name="todo" placeholder="Add a task..." required>
+                <button type="submit">Add</button>
+            </div>
+        </form>
+
+        {% if todos %}
+        <ul class="todo-list">
+            {% for todo in todos %}
+            <li id = "{{ todo.id }}">
+                <span class="todo-checkbox"></span>
+                <span>{{ todo.task }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty-todos">No tasks yet. Add one above.</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

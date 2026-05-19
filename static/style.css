@@ -1,0 +1,247 @@
+body.login {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+body.login .login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    text-align: center;
+    transform: translateY(-15%);
+}
+
+body.login .login-card {
+    background: #ffffff;
+    padding: 45px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d3d9d9;
+}
+
+body.login .logo-area img {
+    max-width: 220px;
+    margin-bottom: 35px;
+}
+
+body.login .input-group {
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+body.login .input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #494c4e;
+    font-size: 0.95rem;
+}
+
+body.login .input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d3d9d9;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+body.login .input-group input:focus {
+    outline: none;
+    border-color: #006fbf;
+    box-shadow: 0 0 0 2px rgba(0, 111, 191, 0.2);
+}
+
+body.login .login-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #006fbf;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+body.login .login-button:hover {
+    background-color: #005694;
+}
+
+body.login .form-footer {
+    margin-top: 25px;
+}
+
+body.login .form-footer a, 
+body.login .extra-links a {
+    color: #006fbf;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+body.login .form-footer a:hover, 
+body.login .extra-links a:hover {
+    text-decoration: underline;
+}
+
+body.login .extra-links {
+    margin-top: 30px;
+    color: #6a6e71;
+}
+
+body.dashboard {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 40px;
+}
+
+body.dashboard .dashboard-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+body.dashboard .dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #dcdcdc;
+    padding-bottom: 20px;
+}
+
+body.dashboard .dash-header h1 {
+    color: #202122;
+    margin: 0;
+}
+
+body.dashboard .logout-btn {
+    text-decoration: none;
+    color: #006fbf;
+    font-weight: 600;
+    border: 2px solid #006fbf;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+body.dashboard .logout-btn:hover {
+    background-color: #006fbf;
+    color: white;
+}
+
+body.dashboard .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+body.dashboard .course-card {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+body.dashboard .course-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+}
+
+body.dashboard .card-image {
+    height: 140px;
+    background: linear-gradient(135deg, #006fbf 0%, #004a80 100%);
+}
+
+body.dashboard .card-content {
+    padding: 20px;
+}
+
+body.dashboard .card-content h3 {
+    margin: 0 0 8px 0;
+    color: #006fbf;
+    font-size: 1.2rem;
+}
+
+body.dashboard .card-content p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+body.dashboard .todo-panel {
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 24px;
+}
+
+body.dashboard .todo-header h2 {
+    color: #202122;
+    margin: 0 0 8px 0;
+}
+
+body.dashboard .todo-header p {
+    color: #666;
+    margin: 0 0 20px 0;
+}
+
+body.dashboard .todo-form label {
+    color: #494c4e;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+body.dashboard .todo-input-row {
+    display: flex;
+    gap: 12px;
+}
+
+body.dashboard .todo-input-row input {
+    border: 1px solid #d3d9d9;
+    border-radius: 6px;
+    flex: 1;
+    font-size: 1rem;
+    padding: 12px;
+}
+
+body.dashboard .todo-input-row button {
+    background-color: #006fbf;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0 22px;
+}
+
+body.dashboard .todo-input-row button:hover {
+    background-color: #005694;
+}
+
+body.dashboard .todo-list {
+    list-style: none;
+    margin: 20px 0 0 0;
+    padding: 0;
+}
+
+body.dashboard .todo-list li {
+    border-top: 1px solid #e6e6e6;
+    color: #202122;
+    padding: 12px 0;
+}
+
+body.dashboard .empty-todos {
+    color: #666;
+    margin: 20px 0 0 0;
+}

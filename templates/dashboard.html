@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+<div class="dashboard-wrapper">
+    <header class="dash-header">
+        <h1>Welcome back, {{ user.f_name }}!</h1>
+        <a href="/login" class="logout-btn">Logout</a>
+    </header>
+
+    <section class="course-grid">
+        <a href="{{url_for('todo')}}">
+            <div class="course-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h3>To Do</h3>
+                    <p>View Your To Do List</p>
+                </div>
+            </div>
+        </a>
+        <a href="{{url_for('blogs')}}">
+            <div class="course-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h3>Blogs</h3>
+                    <p>Check what others are up to!</p>
+                </div>
+            </div>
+        </a>
+        <a href="{{url_for('file_share')}}">
+            <div class="course-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h3>Upload Files</h3>
+                    <p>Upload files to share</p>
+                </div>
+            </div>
+        </a>
+    </section>
+</div>
+{% endblock %}
