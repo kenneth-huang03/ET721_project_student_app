@@ -7,37 +7,61 @@
     <header class="page-header">
         <div>
             <p class="eyebrow">Task Manager</p>
-            <h1>To Do List</h1>
+            <h1>To&#8202;-&#8202;Do List</h1>
             <p>Keep track of upcoming course tasks and reminders.</p>
         </div>
-        <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+        <a href="{{ url_for('dashboard') }}" class="back-link">← Back to Dashboard</a>
     </header>
 
     <section class="todo-panel">
         <div class="todo-header">
             <h2>Add a task</h2>
-            <p>New tasks are saved in your current session for now.</p>
         </div>
 
         <form action="{{ url_for('todo') }}" method="POST" class="todo-form">
             <label for="todo">New task</label>
             <div class="todo-input-row">
-                <input type="text" id="todo" name="todo" placeholder="Add a task..." required>
+                <input type="text" id="todo" name="todo" placeholder="Add a task…" required>
                 <button type="submit">Add</button>
             </div>
         </form>
 
-        {% if todos %}
+        {% set pending = todos | selectattr("done", "equalto", 0) | list %}
+        {% set done    = todos | selectattr("done", "equalto", 1) | list %}
+
+        {% if pending %}
         <ul class="todo-list">
-            {% for todo in todos %}
-            <li id = "{{ todo.id }}">
-                <span class="todo-checkbox"></span>
-                <span>{{ todo.task }}</span>
+            {% for item in pending %}
+            <li class="todo-item">
+                <form action="{{ url_for('todo_done', todo_id=item.id) }}" method="POST" class="inline-form">
+                    <button type="submit" class="todo-check" title="Mark done">✓</button>
+                </form>
+                <span class="todo-task">{{ item.task }}</span>
+                <form action="{{ url_for('todo_delete', todo_id=item.id) }}" method="POST" class="inline-form">
+                    <button type="submit" class="todo-del" title="Delete">✕</button>
+                </form>
             </li>
             {% endfor %}
         </ul>
         {% else %}
-        <p class="empty-todos">No tasks yet. Add one above.</p>
+        <p class="empty-todos">No pending tasks. Add one above!</p>
+        {% endif %}
+
+        {% if done %}
+        <details class="done-section">
+            <summary>Completed ({{ done | length }})</summary>
+            <ul class="todo-list todo-list--done">
+                {% for item in done %}
+                <li class="todo-item todo-item--done">
+                    <span class="todo-check todo-check--static">✓</span>
+                    <span class="todo-task">{{ item.task }}</span>
+                    <form action="{{ url_for('todo_delete', todo_id=item.id) }}" method="POST" class="inline-form">
+                        <button type="submit" class="todo-del" title="Delete">✕</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </details>
         {% endif %}
     </section>
 </main>

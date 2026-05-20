@@ -10,37 +10,77 @@
             <h1>File Share</h1>
             <p>Share class files, notes, and resources in one place.</p>
         </div>
-        <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+        <a href="{{ url_for('dashboard') }}" class="back-link">← Back to Dashboard</a>
     </header>
 
     <section class="file-share-layout">
+
+        <!-- Upload card -->
         <div class="upload-card">
             <h2>Upload a file</h2>
-            <p>Select a file and add a short description for classmates.</p>
 
-            <form action="#" method="POST" enctype="multipart/form-data" class="upload-form">
+            <details class="upload-types">
+                <summary>
+                    Accepted file types
+                    <span class="upload-types-count">({{ allowed_extensions|length }})</span>
+                </summary>
+                <ul class="ext-chips">
+                    {% for ext in allowed_extensions %}
+                    <li>.{{ ext }}</li>
+                    {% endfor %}
+                </ul>
+            </details>
+
+            <form action="{{ url_for('file_share') }}" method="POST" enctype="multipart/form-data" class="upload-form">
                 <label for="file">Choose file</label>
-                <input type="file" id="file" name="file">
+                <input type="file" id="file" name="file" required>
 
-                <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" placeholder="What is this file for?"></textarea>
+                <label for="description">Description <span class="optional">(optional)</span></label>
+                <textarea id="description" name="description" rows="3" placeholder="What is this file for?"></textarea>
 
                 <button type="submit">Share File</button>
             </form>
         </div>
 
+        <!-- Shared files list -->
         <div class="shared-files-card">
             <h2>Shared files</h2>
+
+            {% if files %}
             <ul class="file-list">
-               <li>
-                    <span class="file-icon">File</span>
-                    <div>
-                        <h3>Temp File</h3>
-                        <p>Sample</p>
+                {% for f in files %}
+                <li class="file-item">
+                    <div class="file-icon-wrap">
+                        <span class="file-ext">{{ f.filename.rsplit('.', 1)[-1].upper() if '.' in f.filename else 'FILE' }}</span>
                     </div>
+                    <div class="file-info">
+                        <a
+                            href="{{ url_for('file_view', file_id=f.id) }}"
+                            class="file-name"
+                            title="{{ f.filename }}"
+                        >
+                            {{ f.filename|truncate(46, true, '...', 0) }}
+                        </a>
+                        {% if f.description %}
+                        <p class="file-desc">{{ f.description }}</p>
+                        {% endif %}
+                        <p class="file-meta">{{ f.f_name }} {{ f.l_name }} · {{ f.uploaded_at[:10] }}</p>
+                    </div>
+                    {% if f.user_id == session["id"] %}
+                    <form action="{{ url_for('file_delete', file_id=f.id) }}" method="POST" class="inline-form">
+                        <button type="submit" class="file-del" title="Delete">✕</button>
+                    </form>
+                    {% endif %}
                 </li>
+                {% endfor %}
             </ul>
+            {% else %}
+            <div class="empty-files">
+                <p>No files shared yet. Upload the first one!</p>
+            </div>
+            {% endif %}
         </div>
+
     </section>
 </main>
 {% endblock %}

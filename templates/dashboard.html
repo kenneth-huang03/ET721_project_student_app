@@ -6,7 +6,7 @@
 <div class="dashboard-wrapper">
     <header class="dash-header">
         <h1>Welcome back, {{ user.f_name }}!</h1>
-        <a href="/login" class="logout-btn">Logout</a>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
     </header>
 
     <section class="course-grid">
