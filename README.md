@@ -11,8 +11,8 @@ project/
 │
 ├── static/
 │   ├── style.css           All page styles 
-│   ├── script.js           Javascript for flash auto-dismiss, delete confirmations, file-input feedback,
-│   │                       and submit-button guarding
+│   ├── script.js           Javascript for flash auto-dismiss, delete confirmations, file-input
+│   │                           feedback, and submit-button guarding
 │   └── uploads/            Stored uploads
 │
 └── templates/
