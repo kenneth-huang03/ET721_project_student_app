@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}{{ file.filename }}{% endblock %}
+
+{% block body %}
+<main class="page-wrapper file-view-wrapper">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">File preview</p>
+            <h1>{{ file.filename|truncate(51, true, '...', 0) }}</h1>
+            <p>{{ file.f_name }} {{ file.l_name }} &middot; {{ file.uploaded_at[:10] }}</p>
+        </div>
+        <a href="{{ url_for('file_share') }}" class="back-link">&larr; Back to File Share</a>
+    </header>
+
+    <section class="file-view-card">
+        <div class="file-view-toolbar">
+            <span class="file-view-kind">{{ kind|capitalize }}</span>
+            <a
+                href="{{ url_for('download_file', stored_name=file.stored_name) }}"
+                class="file-download-btn"
+            >
+                Download
+            </a>
+        </div>
+
+        {% if file.description %}
+        <p class="file-view-desc">{{ file.description }}</p>
+        {% endif %}
+
+        <div class="file-preview">
+            {% if kind == "image" %}
+                <img
+                    src="{{ url_for('uploaded_file', stored_name=file.stored_name) }}"
+                    alt="{{ file.filename }}"
+                >
+            {% elif kind == "pdf" %}
+                <iframe
+                    src="{{ url_for('uploaded_file', stored_name=file.stored_name) }}"
+                    title="{{ file.filename }}"
+                ></iframe>
+            {% elif kind == "audio" %}
+                <audio
+                    controls
+                    src="{{ url_for('uploaded_file', stored_name=file.stored_name) }}"
+                ></audio>
+            {% elif kind == "video" %}
+                <video
+                    controls
+                    src="{{ url_for('uploaded_file', stored_name=file.stored_name) }}"
+                ></video>
+            {% elif kind == "text" and text_preview %}
+                <pre class="file-text-preview">{{ text_preview.content }}</pre>
+                {% if text_preview.truncated %}
+                <p class="file-text-truncated">
+                    Preview truncated. Use the Download button to see the full contents.
+                </p>
+                {% endif %}
+            {% else %}
+                <div class="file-preview-empty">
+                    <p>Preview not available for this file type.</p>
+                    <p>Use the Download button above to save the file.</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}
